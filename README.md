@@ -15,18 +15,18 @@
 
 ### Create App
 ```
-    const { createApp } = Vue;
-    const app = createApp({});
+const { createApp } = Vue;
+const app = createApp({});
 ```
 
 ### Include Component
 ```
-    <partial name="Components/HelloWorld/hello-world" />
+<partial name="Components/HelloWorld/hello-world" />
 ```
 
 ### Mount Application    
 ```
-    app.mount('#app');
+app.mount('#app');
 ```
 ### Minimal Component
 ```
