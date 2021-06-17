@@ -1,0 +1,28 @@
+﻿<template id="hello-world-right-template">
+
+    <h1 v-on:click="addMessage()">{{name}}</h1>
+
+</template>
+
+<script>
+    app.component('hello-world-right', {
+        template: '#hello-world-right-template',
+        props: ['context'],
+        data: function () {
+            return {
+                name: 'Right Component'
+            };
+        },
+        methods: {
+            addMessage() {
+                this.context.addMessage(`${this.name} Clicked`);
+            },
+        },
+        created() {
+            this.context.addMessage(`${this.name} Created`);
+        },
+        mounted() {
+            this.context.addMessage(`${this.name} Mounted`);
+        },
+    });
+</script>

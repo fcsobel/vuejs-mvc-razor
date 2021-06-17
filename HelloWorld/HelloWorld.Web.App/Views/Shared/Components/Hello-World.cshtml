@@ -1,0 +1,63 @@
+﻿<template id="hello-world-template">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <h1 v-on:click="context.addMessage(name + ' Clicked')">{{name}}</h1>
+        </div>
+        <div class="col-md-3">
+            <h2>{{context.messages.length}} Messages</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <hello-world-left v-bind:context="context"></hello-world-left>
+        </div>
+        <div class="col-md-4">
+            <hello-world-center v-bind:context="context"></hello-world-center>
+        </div>
+        <div class="col-md-4">
+            <hello-world-right v-bind:context="context"></hello-world-right>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div v-for="item in context.messages">
+                {{item}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<!--Register Sub-Components-->
+<partial name="Components/hello-world-left" />
+<partial name="Components/hello-world-right" />
+<partial name="Components/hello-world-center" />
+
+<script>
+    app.component('hello-world', {
+        template: '#hello-world-template',
+        data: function () {
+            return {
+                name: 'Hello World Parent Component',
+                context:
+                {
+                    messages: [],
+                    addMessage: this.addMessage
+                },
+            };
+        },
+        methods: {
+            addMessage(message) {
+                this.context.messages.push(message);
+            }
+        },
+        created() {
+            this.addMessage(`${this.name} Created`);
+        },
+        mounted() {
+            this.addMessage(`${this.name} Mounted`);
+        },
+    });
+</script>

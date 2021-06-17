@@ -1,0 +1,28 @@
+﻿<template id="hello-world-center-template">
+
+    <h1 v-on:click="addMessage()">{{name}}</h1>
+
+</template>
+
+<script>
+    app.component('hello-world-center', {
+        template: '#hello-world-center-template',
+        props: ['context'],
+        data: function () {
+            return {
+                name: 'Center Component'
+            };
+        },
+        methods: {
+            addMessage() {
+                this.context.addMessage(`${this.name} Clicked`);
+            },
+        },
+        created() {
+            this.context.addMessage(`${this.name} Created`);
+        },
+        mounted() {
+            this.context.addMessage(`${this.name} Mounted`);
+        },
+    });
+</script>
