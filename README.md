@@ -1,6 +1,6 @@
-- Integrate vue.js into into .net core mvc web app 
-	- Uses razor views as vue components
+- Integrate vue.js into into .net core mvc taking advantage of razor view engine to include components
 	- No webpack or node
+    - Uses razor views as vue components
 
 
 ### Render component
