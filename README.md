@@ -28,3 +28,14 @@
 ```
     app.mount('#app');
 ```
+### Minimal Component
+```
+<template id="hello-world-template">
+    <h1>Hello World</h1>
+</template>
+<script>
+    app.component('hello-world', {
+        template: '#hello-world-template',
+    });
+</script>
+```
