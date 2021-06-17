@@ -3,28 +3,28 @@
 	- No webpack or node
 
 
-    ### Html to render component
-    ```
-        <hello-world></hello-world>
-    ```
+### Render component
+```
+<hello-world></hello-world>
+```
 
-    ### Include vue from cdn
-    ```
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.global.js"></script>
-    ```
+### Include vue from cdn
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.global.js"></script>
+```
 
-    ### Create App
-    ```
-        const { createApp } = Vue;
-        const app = createApp({});
-    ```
+### Create App
+```
+    const { createApp } = Vue;
+    const app = createApp({});
+```
 
-    ### Include Component
-    ```
-        <partial name="Components/HelloWorld/hello-world" />
-    ```
+### Include Component
+```
+    <partial name="Components/HelloWorld/hello-world" />
+```
 
-    ### Mount Application    
-    ```
-        app.mount('#app');
-    ```
+### Mount Application    
+```
+    app.mount('#app');
+```
