@@ -1,0 +1,60 @@
+﻿<template id="rate-structure-template">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <h1 v-on:click="context.addMessage(name + ' Clicked')">{{name}}</h1>
+        </div>
+        <div class="col-md-3">
+            <h2>{{context.messages.length}} Messages</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div v-for="item in context.messages">
+                {{item}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<!--Register Sub-Components-->
+<!--<partial name="Components/HelloWorld/hello-world-left" />
+<partial name="Components/HelloWorld/hello-world-right" />
+<partial name="Components/HelloWorld/hello-world-center" />-->
+
+<script>
+    app.component('rate-structure', {
+        template: '#rate-structure-template',
+        data: function () {
+            return {
+                name: 'Rate Structure Component',
+                context:
+                {
+                    messages: [],
+                    addMessage: this.addMessage
+                },
+            };
+        },
+        methods: {
+            addMessage(message) {
+                this.context.messages.push(message);
+            }
+        },
+        created() {
+            this.addMessage(`${this.name} Created`);
+        },
+        mounted() {
+            this.addMessage(`${this.name} Mounted`);
+        },
+    });
+</script>

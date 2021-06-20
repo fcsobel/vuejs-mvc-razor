@@ -41,14 +41,42 @@
     <!--vue3-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.global.js"></script>
 
+    <!--Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!--rxjs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.0/Rx.js" integrity="sha512-Z52EL9J+j7a7VB/NpbOeFhXrek58XaDXTBMVFW4Bgf6LZ7FZYvmpjY9e0WOaSsFxvU3U0+UcwpRwGPViJbQgCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script type="text/javascript">
+
+        // rxjs
+        const { range, Observable } = Rx;
+        const { map, filter, take, tap, of, from, fromEvent, concat, ajax } = Rx.Observable;
+
         // minimal vue3 app startup
         const { createApp } = Vue;
+
+        // create vu3 app
         const app = createApp({});
+
+        // setup shared methods - https://v3.vuejs.org/guide/migration/filters.html#migration-strategy
+        app.config.globalProperties.$filters = {
+            currencyUSD(value, precision) {
+                return '$' + value.toLocaleString('en-US', {
+                    minimumFractionDigits: precision,
+                    maximumFractionDigits: precision
+                });
+            },
+            percent(value, precision) {
+                return (value * 100).toLocaleString('en-US', {
+                    minimumFractionDigits: precision,
+                    maximumFractionDigits: precision
+                }) + '%';
+            }
+        };
     </script>
             
     @await RenderSectionAsync("Components", required: false)
-
     @await RenderSectionAsync("Scripts", required: false)
 
     <script type="text/javascript">

@@ -1,0 +1,125 @@
+﻿<template id="rate-structure-template">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card" v-for="item in context.rates.priceStructures">
+                <div class="card-header">{{item.name}}</div>
+
+                <inventory-rates 
+                    v-bind:rates="context.rates.rates"
+                    v-bind:items="context.rates.items">
+                </inventory-rates>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="card">
+                <div class="card-header">Channels</div>
+                <table class="table table-bordered table-sm table-striped" style="margin:0; padding:0;">
+                    @*<thead>
+                            <tr>
+                                <td><a href="#" v-on:click.prevent="sort('ticker')">Name</a></td>
+                            </tr>
+                        </thead>*@
+                    <tbody>
+                        <tr v-for="item in context.rates.channels">
+                            <td>
+                                {{item.name}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+            <div class="card">
+                <div class="card-header">Items</div>
+                <table class="table table-bordered table-sm table-striped" style="margin:0; padding:0;">
+                    <tbody>
+                        <tr v-for="item in context.rates.items">
+                            <td>
+                                {{item.name}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+
+            <div class="card">
+                <div class="card-header">Rates</div>
+                <table class="table table-bordered table-sm table-striped" style="margin:0; padding:0;">
+                    <tbody>
+                        <tr v-for="item in context.rates.rates">
+                            <td>
+                                {{item.name}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <h2>{{context.messages.length}} Messages</h2>
+
+            <div v-for="item in context.messages">
+                {{item}}
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<!--Register Sub-Components-->
+<partial name="Components/Rates/Inventory-Rates" />
+
+<script>
+    app.component('rate-structure', {
+        template: '#rate-structure-template',
+        data: function () {
+            return {
+                name: 'Rate Structure Component',
+                context:
+                {
+                    messages: [],
+                    rates: {}
+                },
+            };
+        },
+        methods: {
+
+            addMessage(message) {
+                this.context.messages.push(message);
+            },
+            async getAccounts() {
+                const { data } = await axios.get('/data/rates.json');
+
+                this.context.rates = data;
+
+                console.log(data);
+
+                //                this.account = null;
+            },
+
+        },
+        created() {
+            this.addMessage(`${this.name} Created`);
+        },
+        mounted() {
+            this.getAccounts();
+            this.addMessage(`${this.name} Mounted`);
+        },
+    });
+</script>

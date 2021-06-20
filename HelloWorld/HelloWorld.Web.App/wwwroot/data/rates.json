@@ -1,0 +1,57 @@
+{
+  "priceStructures": [
+    {
+      "id": 1,
+      "name": "Summer 2021"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Adult"
+    },
+    {
+      "id": 2,
+      "name": "Child"
+    }
+  ],
+  "channels": [
+    {
+      "id": 1,
+      "name": "Tripster"
+    },
+    {
+      "id": 2,
+      "name": "Google"
+    },
+    {
+      "id": 2,
+      "name": "White Label"
+    }
+  ],
+  "vendors": [
+    {
+      "id": 1,
+      "name": "Company Name"
+    }
+
+  ],
+  "rates": [
+    {
+      "rateId": 1,
+      "channelId": 1,
+      "name": "Standard Tripster Rate"
+    },
+    {
+      "rateId": 1,
+      "channelId": 1,
+      "name": "Package Tripster Rate"
+    },
+    {
+      "rateId": 2,
+      "channelId": 2,
+      "name": "Standard Google Rate"
+    }
+  ]
+
+}
