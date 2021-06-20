@@ -13,20 +13,71 @@
       "name": "01:00 pm"
     }
   ],
-  "priceStructures": [
+  "priceStructures": [],
+  "priceStructures0": [
     {
       "id": 1,
-      "name": "Summer 2021"
+      "name": "Summer 2021",
+      "rates": [
+        {
+          "rate": { "id": 1 },
+          "items": [
+            {
+              "item": { "id": 1 },
+              "price": {
+                "Net": 100.0,
+                "Markup": 2.0,
+                "Tax": 2.0
+              }
+            },
+            {
+              "item": { "id": 2 },
+              "price": {
+                "Net": 90.0,
+                "Markup": 2.0,
+                "Tax": 2.0
+              }
+            }
+          ]
+        },
+        {
+          "rate": { "id": 2 },
+          "items": [
+            {
+              "item": { "id": 1 },
+              "price": {
+                "Net": 100.0,
+                "Markup": 2.0,
+                "Tax": 2.0
+              }
+            },
+            {
+              "item": { "id": 2 },
+              "price": {
+                "Net": 90.0,
+                "Markup": 2.0,
+                "Tax": 2.0
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "items": [
     {
       "id": 1,
-      "name": "Adult"
+      "name": "Adult",
+      "net": 12.99,
+      "markup": 2.50,
+      "tax": 1.25
     },
     {
       "id": 2,
-      "name": "Child"
+      "name": "Child",
+      "net": 10.99,
+      "markup": 1.50,
+      "tax": 1.10
     }
   ],
   "channels": [
@@ -50,24 +101,22 @@
     }
 
   ],
-  "rates": [
+  "rates": [],
+  "rates1": [
     {
-      "rateId": 1,
-      "channelId": 1,
+      "id": 1,
       "name": "Standard",
       "channels": [ "Tripster", "White Label" ],
       "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
     },
     {
-      "rateId": 1,
-      "channelId": 1,
+      "id": 2,
       "name": "Package",
       "channels": [ "Tripster", "White Label" ],
       "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
     },
     {
-      "rateId": 2,
-      "channelId": 2,
+      "id": 3,
       "name": "Google",
       "channels": [ "Google" ],
       "times": [ "10:00 am", "11:00 am", "01:00 pm" ]

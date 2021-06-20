@@ -7,14 +7,14 @@
 
             <h5>Price Structures  <a v-on:click.prevent="addPriceStructure()" href="#">Add</a> </h5>
 
-            <div class="card" v-for="item in context.data.priceStructures">
+            <div class="card" v-for="price in context.data.priceStructures">
 
                 <div class="card-header">
                     
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Price Structure" v-model="item.name">         
+                      <input type="text" class="form-control" placeholder="Price Structure" v-model="price.name">         
                       <div class="input-group-append">
-                          <a v-on:click="deletePriceStructure(item)" href="#" class="input-group-text">Delete</a>
+                          <a v-on:click="deletePriceStructure(price)" href="#" class="input-group-text">Delete</a>
                       </div>
                     </div>
 
@@ -23,12 +23,20 @@
                 <div class="card-body">
 
                     <div class="row">
+                        <template v-for="rateContainer in price.rates">
+                            <div class="col-md-4">
+                                <rate-price-list v-bind:price="price" v-bind:container="rateContainer" v-bind:context="context"></rate-price-list>
+                            </div>
+                        </template>
+                    </div>
+
+                    @*<div class="row">
                         <template v-for="rate in context.data.rates">
                             <div class="col-md-4">
                                 <rate-price-list v-bind:rate="rate" v-bind:context="context"></rate-price-list>
                             </div>
                         </template>
-                    </div>
+                    </div>*@
 
                 </div>
             </div>
@@ -123,8 +131,29 @@
         },
         methods: {
             addPriceStructure() {
-                let item = { "id": 1, "name": "New Price Structure" }
-                this.context.data.priceStructures.push(item);
+
+                var context = this.context;
+
+                let price = { "id": 1, "name": "New Price Structure", rates: [] }
+
+                context.data.rates.forEach(function (rate) {
+
+                    let rateContainer = { rate: rate, items: [] };
+
+                    context.data.items.forEach(function (item) {
+
+                        let price = { net: item.net, markup: item.markup, tax: item.tax };
+                        let itemContainer = { item: item, price: price };
+                        rateContainer.items.push(itemContainer);
+
+                    });
+
+                    price.rates.push(rateContainer);
+                });
+
+                console.log('price', price);
+
+                context.data.priceStructures.push(price);
             },
             addRate() {
                 let item = { "id": 1, "name": "New Rate", times: [], channels: [] }

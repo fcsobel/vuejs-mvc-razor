@@ -2,13 +2,14 @@
 
     <div class="card">
         <div class="card-header">
-            {{rate.name}}
+            {{container.rate.name}} <a v-on:click="deleteRate(container)" href="#">Delete</a>
+
             <div class="float-right">
-                <span class="badge badge-primary" style="margin-right:5px;" v-for="channel in rate.channels">{{channel}}</span>
+                <span class="badge badge-primary" style="margin-right:5px;" v-for="channel in container.rate.channels">{{channel}}</span>
             </div>
             <div>
                 <div class="float-right">
-                    <span class="badge badge-info" style="margin-right:5px;" v-for="time in rate.times">{{time}}</span>
+                    <span class="badge badge-info" style="margin-right:5px;" v-for="time in container.rate.times">{{time}}</span>
                 </div>
             </div>
         </div>
@@ -22,12 +23,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in context.data.items">
+                <tr v-for="item in container.items">
+                    <td>{{item.item.name}}</td>
+                    <td><input type="text" class="form-control" v-model="item.price.net"></td>
+                    <td><input type="text" class="form-control" v-model="item.price.markup"></td>
+                    <td><input type="text" class="form-control" v-model="item.price.tax"></td>
+                </tr>
+                @*<tr v-for="item in context.data.items">
                     <td>{{item.name}}</td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
                     <td><input type="text" class="form-control"></td>
-                </tr>
+                </tr>*@
             </tbody>
         </table>
     </div>
@@ -37,13 +44,13 @@
 <script>
     app.component('rate-price-list', {
         template: '#rate-price-list-template',
-        props: ['rate', 'context'],
+        props: ['price', 'container', 'context'],
         data: function () { return {}; },
         methods:
         {
-            //deletePriceStructure(item) {
-            //    this.context.data.priceStructures.splice(this.context.data.priceStructures.indexOf(item), 1);
-            //},
+            deleteRate(item) {
+                this.price.rates.splice(this.price.rates.indexOf(item), 1);
+            },
         },
         created() { },
         mounted() { },
