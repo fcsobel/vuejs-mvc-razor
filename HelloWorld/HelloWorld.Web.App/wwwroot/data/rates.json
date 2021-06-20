@@ -1,4 +1,18 @@
 {
+  "times": [
+    {
+      "id": 1,
+      "name": "10:00 am"
+    },
+    {
+      "id": 2,
+      "name": "11:00 am"
+    },
+    {
+      "id": 3,
+      "name": "01:00 pm"
+    }
+  ],
   "priceStructures": [
     {
       "id": 1,
@@ -22,11 +36,11 @@
     },
     {
       "id": 2,
-      "name": "Google"
+      "name": "White Label"
     },
     {
-      "id": 2,
-      "name": "White Label"
+      "id": 3,
+      "name": "Google"
     }
   ],
   "vendors": [
@@ -40,17 +54,23 @@
     {
       "rateId": 1,
       "channelId": 1,
-      "name": "Standard Tripster Rate"
+      "name": "Standard",
+      "channels": [ "Tripster", "White Label" ],
+      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
     },
     {
       "rateId": 1,
       "channelId": 1,
-      "name": "Package Tripster Rate"
+      "name": "Package",
+      "channels": [ "Tripster", "White Label" ],
+      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
     },
     {
       "rateId": 2,
       "channelId": 2,
-      "name": "Standard Google Rate"
+      "name": "Google",
+      "channels": [ "Google" ],
+      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
     }
   ]
 

@@ -1,23 +1,60 @@
 ﻿<template id="rate-structure-template">
     <div class="row">
 
-        <div class="col-md-12">
 
-            <div class="card" v-for="item in context.rates.priceStructures">
-                <div class="card-header">{{item.name}}</div>
+        <!--Main-->
+        <div class="col-md-9">
 
-                <inventory-rates 
-                    v-bind:rates="context.rates.rates"
-                    v-bind:items="context.rates.items">
-                </inventory-rates>
+            <h5>Price Structures  <a v-on:click.prevent="addPriceStructure()" href="#">Add</a> </h5>
 
+            <div class="card" v-for="item in context.data.priceStructures">
 
+                <div class="card-header">
+                    
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Price Structure" v-model="item.name">         
+                      <div class="input-group-append">
+                          <a v-on:click="deletePriceStructure(item)" href="#" class="input-group-text">Delete</a>
+                      </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <template v-for="rate in context.data.rates">
+                            <div class="col-md-4">
+                                <rate-price-list v-bind:rate="rate" v-bind:context="context"></rate-price-list>
+                            </div>
+                        </template>
+                    </div>
+
+                </div>
             </div>
 
+
         </div>
+
+        <!--Side-->
+        <div class="col-md-3">
+            <h5>Rates <a v-on:click.prevent="addRate()" href="#">Add</a></h5>
+            <template v-for="rate in context.data.rates">
+                <rate-edit v-bind:rate="rate" v-bind:context="context"></rate-edit>                
+            </template>
+        </div>
+
     </div>
 
+    <!--Data-->
     <div class="row">
+
+        <div class="card">
+            <div class="card-header">Data</div>
+            <div class="card-body">
+                {{context.data.rates}}
+            </div>
+        </div>
 
         <div class="col-md-3">
 
@@ -30,7 +67,7 @@
                             </tr>
                         </thead>*@
                     <tbody>
-                        <tr v-for="item in context.rates.channels">
+                        <tr v-for="item in context.data.channels">
                             <td>
                                 {{item.name}}
                             </td>
@@ -45,7 +82,7 @@
                 <div class="card-header">Items</div>
                 <table class="table table-bordered table-sm table-striped" style="margin:0; padding:0;">
                     <tbody>
-                        <tr v-for="item in context.rates.items">
+                        <tr v-for="item in context.data.items">
                             <td>
                                 {{item.name}}
                             </td>
@@ -61,7 +98,7 @@
                 <div class="card-header">Rates</div>
                 <table class="table table-bordered table-sm table-striped" style="margin:0; padding:0;">
                     <tbody>
-                        <tr v-for="item in context.rates.rates">
+                        <tr v-for="item in context.data.rates">
                             <td>
                                 {{item.name}}
                             </td>
@@ -71,55 +108,50 @@
             </div>
 
         </div>
-        <div class="col-md-3">
-            <h2>{{context.messages.length}} Messages</h2>
-
-            <div v-for="item in context.messages">
-                {{item}}
-            </div>
-        </div>
     </div>
 
 </template>
 
 <!--Register Sub-Components-->
-<partial name="Components/Rates/Inventory-Rates" />
+<partial name="Components/Rates/Rate-Edit" />
+<partial name="Components/Rates/Rate-Price-List" />
 
 <script>
     app.component('rate-structure', {
         template: '#rate-structure-template',
         data: function () {
             return {
-                name: 'Rate Structure Component',
-                context:
-                {
-                    messages: [],
-                    rates: {}
-                },
+                context: {
+                    data: {}
+                }
             };
         },
         methods: {
-
-            addMessage(message) {
-                this.context.messages.push(message);
+            addPriceStructure() {
+                let item = { "id": 1, "name": "New Price Structure" }
+                this.context.data.priceStructures.push(item);
+            },
+            addRate() {
+                let item = { "id": 1, "name": "New Rate", times: [], channels: [] }
+                this.context.data.rates.push(item);
+            },
+            deletePriceStructure(item)
+            {
+                this.context.data.priceStructures.splice(this.context.data.priceStructures.indexOf(item), 1);
             },
             async getAccounts() {
                 const { data } = await axios.get('/data/rates.json');
 
-                this.context.rates = data;
+                this.context.data = data;
 
                 console.log(data);
-
-                //                this.account = null;
             },
 
         },
         created() {
-            this.addMessage(`${this.name} Created`);
         },
         mounted() {
             this.getAccounts();
-            this.addMessage(`${this.name} Mounted`);
         },
     });
 </script>
