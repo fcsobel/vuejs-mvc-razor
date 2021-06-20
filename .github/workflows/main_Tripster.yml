@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'Tripster'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_30992f9f5d8941e2a04bb742d0f68432 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_482c3d77f38b427c87946175afc18050 }}
         package: .
