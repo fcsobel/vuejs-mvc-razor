@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.Web.App.Controllers
 {
-	public class RatesController : Controller
+	public class HelloController : Controller
 	{
-		private readonly ILogger<RatesController> _logger;
+		private readonly ILogger<HelloController> _logger;
 
 
-		public RatesController(ILogger<RatesController> logger)
+		public HelloController(ILogger<HelloController> logger)
 		{
 			_logger = logger;
 		}

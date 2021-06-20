@@ -1,0 +1,51 @@
+﻿<template id="rate-price-list-template">
+
+    <div class="card">
+        <div class="card-header">
+            {{rate.name}}
+            <div class="float-right">
+                <span class="badge badge-primary" style="margin-right:5px;" v-for="channel in rate.channels">{{channel}}</span>
+            </div>
+            <div>
+                <div class="float-right">
+                    <span class="badge badge-info" style="margin-right:5px;" v-for="time in rate.times">{{time}}</span>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-sm table-striped table-sm" style="margin:0; padding:0;">
+            <thead>
+                <tr>
+                    <td>Item</td>
+                    <td>Net</td>
+                    <td>Markup</td>
+                    <td>Tax</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in context.data.items">
+                    <td>{{item.name}}</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</template>
+
+<script>
+    app.component('rate-price-list', {
+        template: '#rate-price-list-template',
+        props: ['rate', 'context'],
+        data: function () { return {}; },
+        methods:
+        {
+            //deletePriceStructure(item) {
+            //    this.context.data.priceStructures.splice(this.context.data.priceStructures.indexOf(item), 1);
+            //},
+        },
+        created() { },
+        mounted() { },
+    });
+</script>
