@@ -1,11 +1,13 @@
 ﻿<template id="rate-structure-template">
     <div class="row">
 
-
         <!--Main-->
         <div class="col-md-9">
 
-            <h5>Price Structures  <a v-on:click.prevent="addPriceStructure()" href="#">Add</a> </h5>
+            <h5>Price Structures |
+                <a v-on:click.prevent="saveData()" href="#">Save</a> | 
+                <a v-on:click.prevent="addPriceStructure()" href="#">Add</a>
+            </h5> 
 
             <div class="card" v-for="price in context.data.priceStructures">
 
@@ -29,14 +31,6 @@
                             </div>
                         </template>
                     </div>
-
-                    @*<div class="row">
-                        <template v-for="rate in context.data.rates">
-                            <div class="col-md-4">
-                                <rate-price-list v-bind:rate="rate" v-bind:context="context"></rate-price-list>
-                            </div>
-                        </template>
-                    </div>*@
 
                 </div>
             </div>
@@ -151,31 +145,47 @@
                     price.rates.push(rateContainer);
                 });
 
-                console.log('price', price);
-
                 context.data.priceStructures.push(price);
             },
             addRate() {
                 let item = { "id": 1, "name": "New Rate", times: [], channels: [] }
                 this.context.data.rates.push(item);
             },
-            deletePriceStructure(item)
-            {
+            deletePriceStructure(item) {
                 this.context.data.priceStructures.splice(this.context.data.priceStructures.indexOf(item), 1);
             },
-            async getAccounts() {
+            async getData() {
                 const { data } = await axios.get('/data/rates.json');
 
                 this.context.data = data;
 
-                console.log(data);
+                this.context.data.rates = this.loadFromLocalStorage('rates') ?? [];
+                this.context.data.priceStructures = this.loadFromLocalStorage('priceStructures') ?? [];
             },
+            saveData() {
+                this.saveToLocalStorage('rates', this.context.data.rates);
+                this.saveToLocalStorage('priceStructures', this.context.data.priceStructures);
+            },
+            saveToLocalStorage(name, data) {
+                const parsed = JSON.stringify(data);
+                localStorage.setItem(name, parsed);
 
+            },
+            loadFromLocalStorage(name) {
+                if (localStorage.getItem(name)) {
+                    try {
+                        return JSON.parse(localStorage.getItem(name));
+
+                    } catch (e) {
+                        localStorage.removeItem(name);
+                    }                    
+                }
+            }
         },
         created() {
         },
         mounted() {
-            this.getAccounts();
+            this.getData();
         },
     });
 </script>

@@ -14,56 +14,6 @@
     }
   ],
   "priceStructures": [],
-  "priceStructures0": [
-    {
-      "id": 1,
-      "name": "Summer 2021",
-      "rates": [
-        {
-          "rate": { "id": 1 },
-          "items": [
-            {
-              "item": { "id": 1 },
-              "price": {
-                "Net": 100.0,
-                "Markup": 2.0,
-                "Tax": 2.0
-              }
-            },
-            {
-              "item": { "id": 2 },
-              "price": {
-                "Net": 90.0,
-                "Markup": 2.0,
-                "Tax": 2.0
-              }
-            }
-          ]
-        },
-        {
-          "rate": { "id": 2 },
-          "items": [
-            {
-              "item": { "id": 1 },
-              "price": {
-                "Net": 100.0,
-                "Markup": 2.0,
-                "Tax": 2.0
-              }
-            },
-            {
-              "item": { "id": 2 },
-              "price": {
-                "Net": 90.0,
-                "Markup": 2.0,
-                "Tax": 2.0
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "items": [
     {
       "id": 1,
@@ -101,26 +51,5 @@
     }
 
   ],
-  "rates": [],
-  "rates1": [
-    {
-      "id": 1,
-      "name": "Standard",
-      "channels": [ "Tripster", "White Label" ],
-      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
-    },
-    {
-      "id": 2,
-      "name": "Package",
-      "channels": [ "Tripster", "White Label" ],
-      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
-    },
-    {
-      "id": 3,
-      "name": "Google",
-      "channels": [ "Google" ],
-      "times": [ "10:00 am", "11:00 am", "01:00 pm" ]
-    }
-  ]
-
+  "rates": [] 
 }
